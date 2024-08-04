@@ -17,8 +17,6 @@ exports.createCategory = (req, res) => {
   });
 };
 
-
-
 // Obtener todas las categorías
 exports.getAllCategories = (req, res) => {
     Categories.getAllCategories((err, categories) => {
@@ -49,8 +47,6 @@ exports.updateCategory = (req, res) => {
     });
 };
 
-
-
 // Eliminar una categoría
 exports.deleteCategory = (req, res) => {
     const { id } = req.params;  
@@ -60,4 +56,5 @@ exports.deleteCategory = (req, res) => {
         res.status(200).json({ message: 'Category deleted successfully' });  
     });
 };
+
 
