@@ -9,6 +9,7 @@ const conexion = require('./conexion/conexion');
 var indexRouter = require('./routes/index');
 const categoryRoutes = require('./routes/categoryRoute');
 const UserRoute = require('./routes/userRoute');
+const notificationsRoute = require('./routes/notificationsRoute');
 
 var app = express();
 
@@ -25,6 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/apiCategory', categoryRoutes);
 app.use('/apiUser', UserRoute);
+app.use('/api', notificationsRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
