@@ -31,16 +31,18 @@ const getCategoryById = (id, callback) => {
 
 // Función para actualizar una categoría
 const updateCategory = (id, name, callback) => {
-  const query = 'UPDATE category SET category_id = ?, name = ? WHERE category_id = ?';
-  db.query(query, [, name, id], (err, results) => {
+  const query = 'UPDATE Category SET name = ? WHERE idCategory = ?';
+  db.query(query, [name, id], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.affectedRows);
   });
 };
 
+
+
 // Función para eliminar una categoría
 const deleteCategory = (id, callback) => {
-  const query = 'DELETE FROM category WHERE category_id = ?';
+  const query = 'DELETE FROM Category WHERE idCategory = ?';
   db.query(query, [id], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.affectedRows);

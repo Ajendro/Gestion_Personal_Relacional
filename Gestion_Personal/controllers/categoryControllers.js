@@ -29,7 +29,7 @@ exports.getAllCategories = (req, res) => {
 
 // Obtener una categoría por ID
 exports.getCategoryById = (req, res) => {
-    const id = req.body.id;
+    const id = req.params.id; 
     Categories.getCategoryById(id, (err, category) => {
         if (err) return res.status(500).send(err);
         if (!category) return res.status(404).json({ message: 'Category not found' });
@@ -39,8 +39,9 @@ exports.getCategoryById = (req, res) => {
 
 // Actualizar una categoría
 exports.updateCategory = (req, res) => {
-    const { id } = req.params;
-    const { name } = req.body;
+    const { id } = req.params;  // ID from URL parameters
+    const { name } = req.body; // Name from request body
+    
     Categories.updateCategory(id, name, (err, affectedRows) => {
         if (err) return res.status(500).json({ error: err.message });
         if (affectedRows === 0) return res.status(404).json({ message: 'Category not found' });
@@ -48,12 +49,15 @@ exports.updateCategory = (req, res) => {
     });
 };
 
+
+
 // Eliminar una categoría
 exports.deleteCategory = (req, res) => {
-    const id = req.body.id;
+    const { id } = req.params;  // Get the ID from URL parameters
     Categories.deleteCategory(id, (err, affectedRows) => {
         if (err) return res.status(500).send(err);
         if (affectedRows === 0) return res.status(404).json({ message: 'Category not found' });
-        res.status(204).end();
+        res.status(200).json({ message: 'Category deleted successfully' });  // Success message
     });
 };
+
