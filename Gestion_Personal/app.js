@@ -6,12 +6,22 @@ var logger = require('morgan');
 const conexion = require('./conexion/conexion');
 
 
-var indexRouter = require('./routes/index');
+
 const categoryRoutes = require('./routes/categoryRoute');
 const UserRoute = require('./routes/userRoute');
 const notificationsRoute = require('./routes/notificationsRoute');
-
+const Personal_FinanceRoute = require('./routes/personal_FinanceRoute');
+const taskRoute = require('./routes/tasksRoute');
+const Authentication_methods = require('./routes/authentication_methodsRoute');
+const Bank_accounts = require('./routes/bank_accountsRoute');
+const Integration = require('./routes/integrationRoute');
+const Personal_objetives = require('./routes/personal_objetivesRoute');
+const Health = require('./routes/healthRoute');
+const Quote = require('./routes/quotesRoute');
+const financial_goals = require('./routes/financial_goalsRoute');
+const autenticación = require('./routes/authenticationRoute');
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -23,10 +33,20 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
 app.use('/apiCategory', categoryRoutes);
 app.use('/apiUser', UserRoute);
 app.use('/api', notificationsRoute);
+app.use('/api', Personal_FinanceRoute);
+app.use('/api', taskRoute);
+app.use('/api', Authentication_methods);
+app.use('/api', Bank_accounts);
+app.use('/api',Integration);
+app.use('/api', Personal_objetives);
+app.use('/api', Health);
+app.use('/api', Quote);
+app.use('/api', financial_goals);
+app.use('/api', autenticación);
 
 
 // catch 404 and forward to error handler
