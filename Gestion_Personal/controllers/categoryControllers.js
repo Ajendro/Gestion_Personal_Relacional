@@ -53,11 +53,11 @@ exports.updateCategory = (req, res) => {
 
 // Eliminar una categoría
 exports.deleteCategory = (req, res) => {
-    const { id } = req.params;  // Get the ID from URL parameters
+    const { id } = req.params;  
     Categories.deleteCategory(id, (err, affectedRows) => {
         if (err) return res.status(500).send(err);
         if (affectedRows === 0) return res.status(404).json({ message: 'Category not found' });
-        res.status(200).json({ message: 'Category deleted successfully' });  // Success message
+        res.status(200).json({ message: 'Category deleted successfully' });  
     });
 };
 
