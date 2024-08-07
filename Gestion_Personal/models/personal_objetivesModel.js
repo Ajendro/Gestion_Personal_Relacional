@@ -1,10 +1,9 @@
 const db = require('../conexion/conexion');
 
 // Función para crear un objetivo personal
-const createPersonalObjective = (description, start_date, end_date, progress, fk_idUser, callback) => {
-  // No need for default value handling here as all fields are required
-  const query = 'INSERT INTO Personal_objetives (description, start_date, end_date, progress, fk_idUser) VALUES (?, ?, ?, ?, ?)';
-  db.query(query, [description, start_date, end_date, progress, fk_idUser], (err, results) => {
+const createPersonalObjective = (description, start_date, end_date, state, fk_idUser, callback) => {
+  const query = 'INSERT INTO Personal_objetives (description, start_date, end_date, state, fk_idUser) VALUES (?, ?, ?, ?, ?)';
+  db.query(query, [description, start_date, end_date, state, fk_idUser], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.insertId);
   });
@@ -29,9 +28,9 @@ const getPersonalObjectiveById = (idPersonal_objetives, fk_idUser, callback) => 
 };
 
 // Función para actualizar un objetivo personal
-const updatePersonalObjective = (idPersonal_objetives, fk_idUser, description, start_date, end_date, progress, callback) => {
-  const query = 'UPDATE Personal_objetives SET description = ?, start_date = ?, end_date = ?, progress = ? WHERE idPersonal_objetives = ? AND fk_idUser = ?';
-  db.query(query, [description, start_date, end_date, progress, idPersonal_objetives, fk_idUser], (err, results) => {
+const updatePersonalObjective = (idPersonal_objetives, fk_idUser, description, start_date, end_date, state, callback) => {
+  const query = 'UPDATE Personal_objetives SET description = ?, start_date = ?, end_date = ?, state = ? WHERE idPersonal_objetives = ? AND fk_idUser = ?';
+  db.query(query, [description, start_date, end_date, state, idPersonal_objetives, fk_idUser], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.affectedRows);
   });

@@ -1,4 +1,4 @@
-const PersonalFinance = require('../models/personal_FinanceModel');  // Adjust the path as necessary
+const PersonalFinance = require('../models/personal_FinanceModel');  
 
 // Create a Personal_Finance entry
 exports.createPersonalFinance = (req, res) => {

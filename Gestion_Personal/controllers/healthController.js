@@ -2,10 +2,10 @@ const Health = require('../models/healthModel');
 
 // Create a new health record
 exports.createHealthRecord = (req, res) => {
-  const { registration_date, weight, heart_rate, allergies, fk_idUser } = req.body;
-  Health.createHealthRecord(registration_date, weight, heart_rate, allergies, fk_idUser, (err, id) => {
+  const { registration_date, weight, heart_rate, fk_idUser } = req.body;
+  Health.createHealthRecord(registration_date, weight, heart_rate, fk_idUser, (err, id) => {
     if (err) return res.status(500).json({ error: err.message });
-    res.status(201).json({ id, registration_date, weight, heart_rate, allergies, fk_idUser });
+    res.status(201).json({ id, registration_date, weight, heart_rate, fk_idUser });
   });
 };
 
@@ -30,8 +30,8 @@ exports.getHealthRecordById = (req, res) => {
 // Update a health record
 exports.updateHealthRecord = (req, res) => {
   const { idHealth } = req.params;
-  const { registration_date, weight, heart_rate, allergies } = req.body;
-  Health.updateHealthRecord(idHealth, registration_date, weight, heart_rate, allergies, (err, affectedRows) => {
+  const { registration_date, weight, heart_rate } = req.body;
+  Health.updateHealthRecord(idHealth, registration_date, weight, heart_rate, (err, affectedRows) => {
     if (err) return res.status(500).json({ error: err.message });
     if (affectedRows === 0) return res.status(404).json({ message: 'Health record not found' });
     res.status(200).json({ message: 'Health record updated successfully' });

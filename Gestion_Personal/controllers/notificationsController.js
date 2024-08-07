@@ -27,7 +27,7 @@ exports.getNotificationById = (req, res) => {
   });
 };
 
-// Update a noti
+// Update a notification
 exports.updateNotification = (req, res) => {
   const { id } = req.params;
   const { message, shipping_date, state, fk_idUser, fk_idCategory } = req.body;

@@ -1,9 +1,9 @@
 const db = require('../conexion/conexion');
 
 // Create a new health record
-const createHealthRecord = (registration_date, weight, heart_rate, allergies, fk_idUser, callback) => {
-  const query = 'INSERT INTO Health (registration_date, weight, heart_rate, Allergies, fk_idUser) VALUES (?, ?, ?, ?, ?)';
-  db.query(query, [registration_date, weight, heart_rate, allergies, fk_idUser], (err, results) => {
+const createHealthRecord = (registration_date, weight, heart_rate, fk_idUser, callback) => {
+  const query = 'INSERT INTO Health (registration_date, weight, heart_rate, fk_idUser) VALUES (?, ?, ?, ?)';
+  db.query(query, [registration_date, weight, heart_rate, fk_idUser], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.insertId);
   });
@@ -28,9 +28,9 @@ const getHealthRecordById = (idHealth, callback) => {
 };
 
 // Update a health record
-const updateHealthRecord = (idHealth, registration_date, weight, heart_rate, allergies, callback) => {
-  const query = 'UPDATE Health SET registration_date = ?, weight = ?, heart_rate = ?, Allergies = ? WHERE idHealth = ?';
-  db.query(query, [registration_date, weight, heart_rate, allergies, idHealth], (err, results) => {
+const updateHealthRecord = (idHealth, registration_date, weight, heart_rate, callback) => {
+  const query = 'UPDATE Health SET registration_date = ?, weight = ?, heart_rate = ? WHERE idHealth = ?';
+  db.query(query, [registration_date, weight, heart_rate, idHealth], (err, results) => {
     if (err) return callback(err, null);
     callback(null, results.affectedRows);
   });

@@ -44,6 +44,6 @@ exports.deleteUser = (req, res) => {
   Users.deleteUser(id, (err, affectedRows) => {
     if (err) return res.status(500).send(err);
     if (affectedRows === 0) return res.status(404).json({ message: 'User not found' });
-    res.status(200).json({ message: 'User deleted successfully' });
-  });
+    res.status(200).json({ message: 'User deleted successfully' });
+  });
 };
